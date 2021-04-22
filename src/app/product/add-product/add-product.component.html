@@ -1,0 +1,62 @@
+<div class="container mt-3 page-container pb-4">
+  <p class="page-title">Ajout produit</p>
+  <div class="row">
+    <div class="col">
+      <button mat-icon-button matTooltip="Retour" (click)="onBack()">
+        <em class="fas fa-arrow-left fa-lg"></em>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form [formGroup]="productForm" (submit)="submitProduit()">
+        <mat-form-field class="w-100">
+          <mat-label>Designation</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Designation"
+            formControlName="designationControl"
+            required
+          />
+          <mat-error *ngIf="productForm.controls['designationControl'].invalid">
+            Designation champ requis
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Quantite</mat-label>
+          <input
+            matInput
+            placeholder="Quantite"
+            type="number"
+            formControlName="quantiteControl"
+            required
+          />
+          <mat-error *ngIf="productForm.controls['quantiteControl'].invalid">
+            Quantite champ requis
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            placeholder="description"
+            formControlName="descriptionControl"
+          ></textarea>
+        </mat-form-field>
+        <button
+          class="w-100"
+          type="submit"
+          [disabled]="productForm.invalid"
+          mat-raised-button
+          color="accent"
+        >
+          Sauvegarder produit
+        </button>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

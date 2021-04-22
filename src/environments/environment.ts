@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiKey: 'aad16a95af433526bf8756525e439b1c'
+  apiKey: 'aad16a95af433526bf8756525e439b1c',
+  productUrl: 'http://localhost:3000/produit',
 };
 
 /*

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MeteoOneDay } from '../shared/model/meteoOneDay.model';
+import { Meteo } from '../shared/model/meteo.model';
 import { MeteoService } from './service/meteo.service';
 
 @Component({
@@ -13,8 +13,8 @@ import { MeteoService } from './service/meteo.service';
 })
 export class MeteoComponent implements OnInit {
   cityName = new FormControl(null, [Validators.required]);
-  meteoOneDay: MeteoOneDay;
-  meteoFiveDay: MeteoOneDay[] = [];
+  meteoOneDay: Meteo;
+  meteoFiveDay: Meteo[] = [];
   constructor(
     private snackBar: MatSnackBar,
     private meteoService: MeteoService

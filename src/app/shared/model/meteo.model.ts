@@ -1,4 +1,4 @@
-export interface MeteoOneDay {
+export interface Meteo {
   base: string;
   clouds: { all: number };
   cod: number;

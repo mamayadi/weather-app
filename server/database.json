@@ -1,0 +1,18 @@
+{
+  "produit": [
+    {
+      "id": "2",
+      "designation": "T-shirt",
+      "prix": 40,
+      "quantite": 15,
+      "description": "T-shirt pour homme"
+    },
+    {
+      "id": "1",
+      "designation": "test",
+      "prix": 50,
+      "quantite": 15,
+      "description": "test test"
+    }
+  ]
+}

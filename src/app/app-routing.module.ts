@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'product',
     loadChildren: () =>
-      import('./meteo/meteo.module').then((m) => m.MeteoModule),
+      import('./product/product.module').then((m) => m.ProductModule),
   },
   {
     path: 'meteo',
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'meteo',
+    redirectTo: 'product',
     pathMatch: 'full'
   }
 ];
