@@ -1,0 +1,89 @@
+.page-title {
+  text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-top: 40px;
+  font-weight: 600;
+}
+.card-title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.card-icon {
+  width: 100px;
+}
+
+.card-weather {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+}
+
+.card-temp {
+  font-size: 36px;
+}
+
+.card-desc {
+  text-align: center;
+  font-size: 20px;
+}
+.card-date {
+  display: block;
+  color: grey;
+  text-align: center;
+  font-size: 12px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-around;
+  height: 40px;
+}
+
+.day-card {
+  background-color: #191919c7;
+  box-shadow: 0px 10px 15px rgb(0 0 0 / 30%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 6px;
+  margin-top: 25px;
+  &__icon {
+    width: 70px;
+  }
+  &__temp {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  &__title {
+    margin: 8px 0;
+  }
+  &__desc {
+    color: grey;
+    font-size: 14px;
+    margin: -6px 0 4px;
+  }
+  &__footer {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 10px 0;
+    &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

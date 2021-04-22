@@ -1,0 +1,52 @@
+.menu-title {
+  text-align: center;
+  margin: 22px 0;
+  font-weight: 700;
+}
+
+.icon-menu {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.menu-item {
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  color: grey;
+  margin: 45px 10px;
+  font-weight: 500;
+  font-size: 20px;
+  &:hover {
+    color: slateblue;
+    cursor: pointer;
+  }
+}
+
+.router-link-active {
+  color: slateblue;
+  outline: none;
+  font-weight: 600;
+}
+
+.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  height: 100%;
+}
+
+.mat-drawer-container {
+  height: 100vh;
+}
+
+.example-sidenav {
+  padding: 20px;
+}

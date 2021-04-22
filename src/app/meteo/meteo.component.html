@@ -1,0 +1,103 @@
+<div class="container mt-3 page-container pb-4">
+  <p class="page-title">Méteo</p>
+  <div class="row">
+    <div class="col-md-3 col-sm-none"></div>
+    <div class="col-md-6 col-sm-12">
+      <form style="text-align: center; margin-top: 20px">
+        <mat-form-field class="w-100">
+          <mat-label>Nom du ville</mat-label>
+          <input
+            matInput
+            type="text"
+            [formControl]="cityName"
+            placeholder="Nom ville"
+            autocomplete="off"
+          />
+          <mat-error *ngIf="cityName.invalid">Nom ville est requis</mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          class="w-100"
+          [disabled]="cityName.invalid"
+          (click)="weatherCity()"
+        >
+          <em class="fas fa-search-location mr-2"></em>
+          Recherche ville
+        </button>
+      </form>
+    </div>
+    <div class="col-md-3 col-sm-none"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-none"></div>
+    <div class="col-md-6 col-12">
+      <mat-card *ngIf="meteoOneDay" class="mt-4">
+        <mat-card-title class="card-title">
+          {{ meteoOneDay.name }}
+        </mat-card-title>
+        <mat-card-content>
+          <div class="card-weather">
+            <img
+              [src]="getIcon(meteoOneDay.weather[0].icon)"
+              class="card-icon"
+              alt="weather-icon"
+            />
+            <span class="card-temp"
+              >{{ meteoOneDay.main.temp - 273.15 | number: "2.1" }}°C</span
+            >
+          </div>
+          <p class="card-desc">{{ meteoOneDay.weather[0].main }}</p>
+          <div class="card-date">
+            <!-- <span >{{ meteoOneDay.weather[0].description }}</span> -->
+            <span>{{ meteoOneDay.dt * 1000 | date: "dd/MM/yyyy HH:mm" }}</span>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <div class="card-footer">
+            <span>
+              <i class="fas fa-tint"></i>
+              {{ meteoOneDay.main.humidity }}%
+            </span>
+
+            <span>
+              <i class="fas fa-wind"></i>
+              {{ meteoOneDay.wind.speed }} m/s
+            </span>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    <div class="col-md-3 col-sm-none"></div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-1 col-sm-none"></div>
+    <ng-container *ngFor="let day of meteoFiveDay; let i = index">
+      <div class="col-md-2 col-xs-12" *ngIf="showCard(i)">
+        <div class="day-card">
+          <span class="day-card__title">{{
+            day.dt * 1000 | date: "EEEE"
+          }}</span>
+          <mat-divider class="w-100"></mat-divider>
+          <img class="day-card__icon" [src]="getIcon(day.weather[0].icon)" />
+          <span class="day-card__desc">{{ day.weather[0].main }}</span>
+          <span class="day-card__temp"
+            >{{ day.main.temp - 273.15 | number: "2.1" }}°C</span
+          >
+          <mat-divider class="w-100"></mat-divider>
+          <div class="day-card__footer">
+            <span class="day-card__footer-item">
+              <i class="fas fa-tint"></i>
+              {{ day.main.humidity }}
+            </span>
+            <span class="day-card__footer-item">
+              <i class="fas fa-wind"></i>
+              {{ day.wind.speed }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="col-md-1 col-sm-none"></div>
+  </div>
+</div>
