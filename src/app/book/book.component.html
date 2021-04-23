@@ -1,0 +1,20 @@
+<div class="container">
+  <p class="page-title">Livres</p>
+  <div class="row">
+    <div class="col-md-4 m-4 mx-auto" *ngFor="let livre of livres">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3 class="d-flex align-items-center justify-content-center">
+            <span class="badge badge-danger mr-1">New</span>
+            <a class="text-decoration-none" [routerLink]="['./info', livre.id]"
+              >{{ livre.titre | uppercase }}
+            </a>
+          </h3>
+        </div>
+        <div class="card-body">
+          <img class="card-img-top img" [src]="livre.imageUrl" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

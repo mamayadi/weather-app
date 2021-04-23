@@ -5,8 +5,7 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {
     path: 'book',
-    loadChildren: () =>
-      import('./meteo/meteo.module').then((m) => m.MeteoModule),
+    loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
   },
   {
     path: 'product',
@@ -20,9 +19,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'product',
-    pathMatch: 'full'
-  }
+    redirectTo: 'book',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
