@@ -2,19 +2,24 @@
   <p class="page-title">Livres</p>
   <div class="row">
     <div class="col-md-4 m-4 mx-auto" *ngFor="let livre of livres">
-      <div class="card">
-        <div class="card-header text-center">
-          <h3 class="d-flex align-items-center justify-content-center">
-            <span class="badge badge-danger mr-1">New</span>
-            <a class="text-decoration-none" [routerLink]="['./info', livre.id]"
-              >{{ livre.titre | uppercase }}
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>
+            <a
+              class="w-100 text-decoration-none"
+              color="primary"
+              [matTooltip]="livre.titre"
+              [routerLink]="['./info', livre.id]"
+            >
+              <p class="text-center">
+                <span class="badge badge-danger mr-1">New</span>
+                {{ livre.titre | uppercase }}
+              </p>
             </a>
-          </h3>
-        </div>
-        <div class="card-body">
-          <img class="card-img-top img" [src]="livre.imageUrl" />
-        </div>
-      </div>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="livre.imageUrl" [alt]="livre.titre" />
+      </mat-card>
     </div>
   </div>
 </div>

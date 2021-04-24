@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { NgModule } from '@angular/core';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -18,8 +19,17 @@ const routes: Routes = [
       import('./meteo/meteo.module').then((m) => m.MeteoModule),
   },
   {
+    path: '404',
+    component: NotFoundComponent,
+  },
+  {
     path: '',
     redirectTo: 'book',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
     pathMatch: 'full',
   },
 ];

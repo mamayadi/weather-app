@@ -17,6 +17,11 @@ const routes: Routes = [
     redirectTo: '',
     pathMatch: 'full',
   },
+  {
+    path: '**',
+    redirectTo: '/404',
+    pathMatch: 'full',
+  },
 ];
 
 export const BookRoutingRoutes = RouterModule.forChild(routes);

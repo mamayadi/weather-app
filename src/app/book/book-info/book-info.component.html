@@ -1,43 +1,56 @@
 <div class="container">
   <p class="page-title">Livre info</p>
   <div class="text-center">
-    <a class="btn btn-info my-5" [routerLink]="['/book']"
-      >Retour à la liste</a
+    <button
+      mat-raised-button
+      class="btn btn-info my-3"
+      [routerLink]="['/book']"
     >
+      <em class="fas fa-arrow-left mr-2"></em>
+      Retour à la liste
+    </button>
   </div>
   <div class="row">
-    <div class="col-md-4 mx-auto">
-      <div class="card">
-        <img class="card-img-top img-fluid" [src]="liv.imageUrl" />
-        <div
-          class="card-body"
-          [ngStyle]="{ color: getColor() }"
-          [ngClass]="{
-            'list-group-item': true,
-            'list-group-item-success': liv.commander === true,
-            'list-group-item-danger': liv.commander === false
-          }"
-        >
-          <h4 class="card-title">
-            <div>{{ liv.titre | uppercase }}</div>
-            {{ liv.date | date: "fullDate" }}
-          </h4>
-          <span *ngIf="liv.commander === true">
-            <input
-              type="checkbox"
-              checked="checked"
-              class="form-control"
-              (click)="reinitialiser()"
-            />
-          </span>
-
-          <div class="text-center" *ngIf="liv.commander === false">
-            <button class="btn btn-success" (click)="onObtenir()">
-              Commander
-            </button>
+    <div class="col-md-4 mx-auto mb-4">
+      <mat-card class="example-card">
+        <img mat-card-image [src]="book.imageUrl" [alt]="book.titre" />
+        <mat-card-content>
+          <div
+            [ngStyle]="{ color: getColor() }"
+            [ngClass]="{
+              'list-group-item': true,
+              'list-group-item-success': book.commander === true,
+              'list-group-item-danger': book.commander === false
+            }"
+          >
+            <h4 class="card-title">
+              <div>{{ book.titre | uppercase }}</div>
+              {{ book.date | date: "fullDate" }}
+            </h4>
           </div>
-        </div>
-      </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            *ngIf="book.commander === false"
+            mat-icon-button
+            class="w-100 mx-auto"
+            color="accent"
+            (click)="onObtenir()"
+          >
+            <em class="fas fa-shopping-bag mr-2"></em>
+            Commander
+          </button>
+          <mat-checkbox
+            *ngIf="book.commander === true"
+            type="checkbox"
+            checked="checked"
+            class="form-control"
+            (click)="reinitialiser()"
+          >
+            Commandé
+          </mat-checkbox>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </div>
