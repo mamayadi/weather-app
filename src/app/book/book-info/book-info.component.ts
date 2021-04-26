@@ -1,7 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/shared/model/book.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { livres } from '../book.component';
 
 @Component({
@@ -13,27 +14,43 @@ export class BookInfoComponent implements OnInit {
   id: number;
   book: Book;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadlivre();
   }
 
   loadlivre(): void {
-    this.id = this.route.snapshot.params.id;
-    this.id = Number(this.id) - 1;
-    this.book = livres[this.id];
+    this.id = +this.route.snapshot.params.id;
+    this.id -= 1;
+    if (this.id < livres.length) {
+      this.book = livres[this.id];
+    } else {
+      this.snackBar.open('Livre introuvable!', 'OK', {
+        duration: 3500,
+        panelClass: ['mat-toolbar', 'mat-primary'],
+      });
+      this.router.navigate(['book']);
+    }
   }
 
   getColor(): string {
-    return this.book.commander ? 'green' : 'red';
+    return this.book?.commander ? 'green' : 'red';
   }
 
   onObtenir(): void {
-    this.book.commander = true;
+    if (this.book) {
+      this.book.commander = true;
+    }
   }
 
   reinitialiser(): void {
-    this.book.commander = false;
+    if (this.book) {
+      this.book.commander = false;
+    }
   }
 }

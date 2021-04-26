@@ -13,25 +13,25 @@
   <div class="row">
     <div class="col-md-4 mx-auto mb-4">
       <mat-card class="example-card">
-        <img mat-card-image [src]="book.imageUrl" [alt]="book.titre" />
+        <img mat-card-image [src]="book?.imageUrl" [alt]="book?.titre" />
         <mat-card-content>
           <div
             [ngStyle]="{ color: getColor() }"
             [ngClass]="{
               'list-group-item': true,
-              'list-group-item-success': book.commander === true,
-              'list-group-item-danger': book.commander === false
+              'list-group-item-success': book?.commander === true,
+              'list-group-item-danger': book?.commander === false
             }"
           >
             <h4 class="card-title">
-              <div>{{ book.titre | uppercase }}</div>
-              {{ book.date | date: "fullDate" }}
+              <div>{{ book?.titre | uppercase }}</div>
+              {{ book?.date | date: "fullDate" }}
             </h4>
           </div>
         </mat-card-content>
         <mat-card-actions>
           <button
-            *ngIf="book.commander === false"
+            *ngIf="book?.commander === false"
             mat-icon-button
             class="w-100 mx-auto"
             color="accent"
@@ -41,7 +41,7 @@
             Commander
           </button>
           <mat-checkbox
-            *ngIf="book.commander === true"
+            *ngIf="book?.commander === true"
             type="checkbox"
             checked="checked"
             class="form-control"
