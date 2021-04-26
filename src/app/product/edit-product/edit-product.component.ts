@@ -32,10 +32,19 @@ export class EditProductComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.product$ = this.produitService.getProductById(params.id);
     });
-    this.product$?.subscribe((produit) => {
-      this.product = produit;
-      this.setProduct(produit);
-    });
+    this.product$?.subscribe(
+      (produit) => {
+        this.product = produit;
+        this.setProduct(produit);
+      },
+      (error) => {
+        this.snackBar.open('Produit introuvable!', 'OK', {
+          duration: 3500,
+          panelClass: ['mat-toolbar', 'mat-primary'],
+        });
+        this.router.navigate(['product']);
+      }
+    );
   }
 
   createForm(): FormGroup {
@@ -65,6 +74,10 @@ export class EditProductComponent implements OnInit {
       this.produitService.updateProduct(produit).subscribe(
         (data) => {
           if (data) {
+            this.snackBar.open('Produit mis à jour avec succès', 'OK', {
+              duration: 5000,
+              panelClass: ['mat-toolbar', 'mat-primary'],
+            });
             this.router.navigate(['product']);
           }
         },

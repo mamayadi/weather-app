@@ -7,6 +7,7 @@ import {
 
 import { DeleteDialogComponent } from '../shared/components/deleteDialog/deleteDialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../shared/model/product.model';
 import { ProduitService } from './service/produit.service';
@@ -26,6 +27,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   public products: Product[] = [];
   public dataSource = new MatTableDataSource(this.products);
   constructor(
+    private snackBar: MatSnackBar,
     private productService: ProduitService,
     public dialog: MatDialog,
     private cdRef: ChangeDetectorRef
@@ -65,6 +67,10 @@ export class ProductComponent implements OnInit, AfterViewInit {
       if (result === 1) {
         this.productService.deleteProduct(produit).subscribe((data) => {
           this.loadProducts();
+          this.snackBar.open('Produit supprimé avec succès', 'OK', {
+            duration: 5000,
+            panelClass: ['mat-toolbar', 'mat-primary'],
+          });
         });
       }
     });

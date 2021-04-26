@@ -8,8 +8,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+    <div class="col-md-3 col-sm-none"></div>
+    <div class="col-md-6 col-sm-12">
       <form [formGroup]="productForm" (submit)="submitProduit()">
         <mat-form-field class="w-100">
           <mat-label>Designation</mat-label>
@@ -19,6 +19,7 @@
             placeholder="Designation"
             formControlName="designationControl"
             required
+            autocomplete="off"
           />
           <mat-error *ngIf="productForm.controls['designationControl'].invalid">
             Designation champ requis
@@ -32,6 +33,7 @@
             type="number"
             formControlName="quantiteControl"
             required
+            autocomplete="off"
           />
           <mat-error *ngIf="productForm.controls['quantiteControl'].invalid">
             Quantite champ requis
@@ -57,6 +59,6 @@
         </button>
       </form>
     </div>
-    <div class="col-3"></div>
+    <div class="col-md-3 col-sm-none"></div>
   </div>
 </div>

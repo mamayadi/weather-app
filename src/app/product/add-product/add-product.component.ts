@@ -45,6 +45,10 @@ export class AddProductComponent implements OnInit {
       this.produitService.createProduct(produit).subscribe(
         (data) => {
           if (data) {
+            this.snackBar.open('Produit créé avec succès', 'OK', {
+              duration: 5000,
+              panelClass: ['mat-toolbar', 'mat-primary'],
+            });
             this.router.navigate(['product']);
           }
         },
