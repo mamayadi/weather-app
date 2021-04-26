@@ -29,23 +29,17 @@ export class MeteoComponent implements OnInit {
           this.meteoOneDay = data;
         },
         (error: HttpErrorResponse) => {
-          this.snackBar.open(error.error.message, 'OK', {
+          this.snackBar.open('Ville introuvable!', 'OK', {
             duration: 5000,
             panelClass: ['mat-toolbar', 'mat-primary'],
           });
         }
       );
-      this.meteoService.getMeteo5jours(this.cityName.value).subscribe(
-        (data) => {
+      this.meteoService
+        .getMeteo5jours(this.cityName.value)
+        .subscribe((data) => {
           this.meteoFiveDay = data;
-        },
-        (error: HttpErrorResponse) => {
-          this.snackBar.open(error.error.message, 'OK', {
-            duration: 5000,
-            panelClass: ['mat-toolbar', 'mat-primary'],
-          });
-        }
-      );
+        });
     }
   }
 
@@ -53,7 +47,48 @@ export class MeteoComponent implements OnInit {
     return `http://openweathermap.org/img/wn/${icon}@2x.png`;
   }
 
+  getFlag(icon: string): string {
+    return `http://openweathermap.org/images/flags/${icon.toLowerCase()}.png`;
+  }
+
   showCard(index: number): boolean {
     return index % 8 === 0;
+  }
+
+  translateStatus(main: string): string {
+    switch (main) {
+      case 'Thunderstorm':
+        return 'Orage';
+      case 'Drizzle':
+        return 'Bruine';
+      case 'Rain':
+        return 'Pluie';
+      case 'Snow':
+        return 'Neige';
+      case 'Mist':
+        return 'Brume';
+      case 'Smoke':
+        return 'Fumée';
+      case 'Haze':
+        return 'Brume';
+      case 'Dust':
+        return 'Poussière';
+      case 'Fog':
+        return 'Brouillard';
+      case 'Sand':
+        return 'Sable';
+      case 'Ash':
+        return 'Cendre';
+      case 'Squall':
+        return 'Bourrasque';
+      case 'Tornado':
+        return 'Tornade';
+      case 'Clouds':
+        return 'Des nuages';
+      case 'Clear':
+        return 'Dégager';
+      default:
+        return '';
+    }
   }
 }

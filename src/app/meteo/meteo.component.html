@@ -35,6 +35,11 @@
       <mat-card *ngIf="meteoOneDay" class="mt-4">
         <mat-card-title class="card-title">
           {{ meteoOneDay.name }}
+          <img
+            class="ml-2"
+            [src]="getFlag(meteoOneDay.sys.country)"
+            alt="country-flag"
+          />
         </mat-card-title>
         <mat-card-content>
           <div class="card-weather">
@@ -44,10 +49,12 @@
               alt="weather-icon"
             />
             <span class="card-temp"
-              >{{ meteoOneDay.main.temp - 273.15 | number: "2.1" }}°C</span
+              >{{ meteoOneDay.main.temp - 273.15 | number: "1.0-0" }}°C</span
             >
           </div>
-          <p class="card-desc">{{ meteoOneDay.weather[0].main }}</p>
+          <p class="card-desc">
+            {{ translateStatus(meteoOneDay.weather[0].main) }}
+          </p>
           <div class="card-date">
             <span>{{ meteoOneDay.dt * 1000 | date: "dd/MM/yyyy HH:mm" }}</span>
           </div>
@@ -55,12 +62,12 @@
         <mat-card-footer>
           <div class="card-footer">
             <span>
-              <i class="fas fa-tint"></i>
+              <em class="fas fa-tint"></em>
               {{ meteoOneDay.main.humidity }}%
             </span>
 
             <span>
-              <i class="fas fa-wind"></i>
+              <em class="fas fa-wind"></em>
               {{ meteoOneDay.wind.speed }} m/s
             </span>
           </div>
@@ -78,19 +85,25 @@
             day.dt * 1000 | date: "EEEE"
           }}</span>
           <mat-divider class="w-100"></mat-divider>
-          <img class="day-card__icon" [src]="getIcon(day.weather[0].icon)" />
-          <span class="day-card__desc">{{ day.weather[0].main }}</span>
+          <img
+            class="day-card__icon"
+            [src]="getIcon(day.weather[0].icon)"
+            alt="weather-icon"
+          />
+          <span class="day-card__desc">{{
+            translateStatus(day.weather[0].main)
+          }}</span>
           <span class="day-card__temp"
-            >{{ day.main.temp - 273.15 | number: "2.1" }}°C</span
+            >{{ day.main.temp - 273.15 | number: "1.0-0" }}°C</span
           >
           <mat-divider class="w-100"></mat-divider>
           <div class="day-card__footer">
             <span class="day-card__footer-item">
-              <i class="fas fa-tint"></i>
+              <em class="fas fa-tint"></em>
               {{ day.main.humidity }}
             </span>
             <span class="day-card__footer-item">
-              <i class="fas fa-wind"></i>
+              <em class="fas fa-wind"></em>
               {{ day.wind.speed }}
             </span>
           </div>
